@@ -1,0 +1,17 @@
+{
+  "tests": "178",
+  "failures": "0",
+  "errors": "0",
+  "skipped": "0",
+  "time": "2.205",
+  "timestamp": "2026-10-12T07:09:35.159360+00:00",
+  "execution_subject": "pytest",
+  "system_under_test": "SDK and comparison runner offline tests",
+  "status": "passed",
+  "composition": {
+    "original_sdk_and_adapters": 145,
+    "comparison_runner": 25,
+    "context_manager_probe": 4,
+    "timeout_probe": 4
+  }
+}

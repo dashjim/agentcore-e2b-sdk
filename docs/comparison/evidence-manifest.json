@@ -1,0 +1,29 @@
+{
+  "core_baseline_commit": "70a724647130079c2843e7dcd0575b857b918a6a",
+  "core_changed_for_comparison": false,
+  "sha256": {
+    "src/agentcore_sandbox/__init__.py": "42f26fcb5540505e29c84f89e907d6dd61d6bd5cefd696843ab7bdcf3f667b1a",
+    "src/agentcore_sandbox/adapter.py": "462d804270f062d4b31034f2a87e785840521c915afb1353f5d47e8e6458bc11",
+    "src/agentcore_sandbox/client.py": "62592c2fc6a729578bf23a383b9297b61df8d5ff98ac4f880bc18a1d40c8aab9",
+    "src/agentcore_sandbox/commands.py": "f180dd2aaa8d6d427a63cacf0577c40fe345a00c86ce9433c915cdf074c22d34",
+    "src/agentcore_sandbox/exceptions.py": "a9e5888c494238b91bd5d39211fad9dbc9a99a60028b72e641494b3af81a9f6f",
+    "src/agentcore_sandbox/exec_guard.py": "35737e8ba8daf4b37472804fa1022091983af1cc1eb3659950f3752acf6250ee",
+    "src/agentcore_sandbox/files.py": "4cd60869ad0a587f4c2a7f45dd21eed9920fb5ec48a5cd49af8baa288b27dca6",
+    "src/agentcore_sandbox/models.py": "b7de0afc303c1dad69c5709bda64d99b336e4a2158751cff9a99abd057e3bc0d",
+    "src/agentcore_sandbox/sandbox.py": "0ff703abc4a85e16327ef2bacbba86c7c4f66988e3812d0eb171137299945ce5",
+    "src/agentcore_sandbox/server.py": "3e4716f7f23afdabb9a5ef00314a327ad2fe973e1dcea6bf8daf6355d73c0fa7",
+    "scripts/compare_backends.py": "863d686ef80df1435732e4167681dc8b685b8de9cc2cab9080e3d46cc5f0537f",
+    "scripts/compare_context_manager.py": "10d3adb6f80ec12db4cfa52af4a14c6831347b2f2a7ef3985b8a71a5917090d4",
+    "scripts/compare_timeout.py": "947b5069b04c36997193187faa2d53bb8b7281fad05486936a58443049d9c017",
+    "docs/comparison/context-manager-results.json": "67560d95d03e3f41527a22a7f86ad5fa47701d1949f2b2a2ee7beb76bbbaffcc",
+    "docs/comparison/local-tests-summary.json": "f45400ebbd13ce9ba54751048cfc960a652fec6170bcb6d558fbcd5f33d377d7",
+    "docs/comparison/results-r01.json": "ce841d21e780007e3628de8aedc6179f11891da765b24372e8e31018b02a444e",
+    "docs/comparison/results-r02.json": "9396ba909b106371720f39062e907cec924c6c1d1ad8c038191f5158600d1778",
+    "docs/comparison/timeout-results.json": "5754f884ec37b16c7a438d5607d8a16a06059a865417dcc4b4943d83807cc2c3",
+    "docs/comparison/type-contract-results.json": "fc065f96aca75a0240074b9ed6f56281953c821d4d68459bddd8f651fa143ddf",
+    "scripts/probe_python_contract.py": "723ee54df184821e63e399ccb62b537d0255e3f82d71d1ba795ba33e5cfc61e6",
+    "docs/comparison/bandit.json": "31207af4bddc1588757d5b052be42443eecc2ebaddb480bb79b9c7b9485cc8fc",
+    "docs/comparison/gitleaks.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "docs/comparison/security-check.json": "dbcd749b9848219a27eadeff8a352e623ccc6c472e87b1fe811d17ea83775262"
+  }
+}

@@ -1,0 +1,513 @@
+{
+  "generated_at_utc": "2026-10-12T06:58:39.107726+00:00",
+  "execution_subject": "Offline Python contract probe",
+  "systems_under_test": [
+    "Installed official E2B Python SDK",
+    "Public AgentCore-style SDK source"
+  ],
+  "evidence_kind": "Python introspection, local data/exception construction, and source inspection only",
+  "limitations": [
+    "No sandbox/client factory was called",
+    "No cloud or backend behavior was tested",
+    "Constructed exception fields are examples, not observations from a real failed command",
+    "Signature binding checks call syntax, not runtime option support"
+  ],
+  "network_connections_and_dns_blocked": true,
+  "versions": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "e2b": "2.51.0",
+    "agentcore_sandbox": "0.1.0"
+  },
+  "agentcore_source_root": "src/",
+  "class_identity": {
+    "CommandResult": {
+      "e2b": {
+        "qualified_name": "e2b.sandbox.commands.command_handle.CommandResult",
+        "signature": "(stderr: str, stdout: str, exit_code: int, error: Optional[str]) -> None",
+        "mro": [
+          "e2b.sandbox.commands.command_handle.CommandResult",
+          "builtins.object"
+        ],
+        "frozen": false,
+        "fields": [
+          {
+            "name": "stderr",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "stdout",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "exit_code",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "error",
+            "keyword_only": false,
+            "required": true
+          }
+        ]
+      },
+      "agentcore": {
+        "qualified_name": "agentcore_sandbox.models.CommandResult",
+        "signature": "(stdout: str, stderr: str, exit_code: int, error: str | None = None) -> None",
+        "mro": [
+          "agentcore_sandbox.models.CommandResult",
+          "builtins.object"
+        ],
+        "frozen": true,
+        "fields": [
+          {
+            "name": "stdout",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "stderr",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "exit_code",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "error",
+            "keyword_only": false,
+            "required": false
+          }
+        ]
+      },
+      "same_class": false,
+      "agentcore_is_e2b_subclass": false
+    },
+    "CommandExitException": {
+      "e2b": {
+        "qualified_name": "e2b.sandbox.commands.command_handle.CommandExitException",
+        "signature": "(stderr: str, stdout: str, exit_code: int, error: Optional[str]) -> None",
+        "mro": [
+          "e2b.sandbox.commands.command_handle.CommandExitException",
+          "e2b.exceptions.SandboxException",
+          "builtins.Exception",
+          "builtins.BaseException",
+          "e2b.sandbox.commands.command_handle.CommandResult",
+          "builtins.object"
+        ],
+        "frozen": false,
+        "fields": [
+          {
+            "name": "stderr",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "stdout",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "exit_code",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "error",
+            "keyword_only": false,
+            "required": true
+          }
+        ]
+      },
+      "agentcore": {
+        "qualified_name": "agentcore_sandbox.exceptions.CommandExitException",
+        "signature": "(message, *, code=None, stdout='', stderr='', exit_code=None, error=None, remote_state_unknown=False)",
+        "mro": [
+          "agentcore_sandbox.exceptions.CommandExitException",
+          "agentcore_sandbox.exceptions.SandboxError",
+          "builtins.Exception",
+          "builtins.BaseException",
+          "builtins.object"
+        ]
+      },
+      "same_class": false,
+      "agentcore_is_e2b_subclass": false
+    },
+    "FileType": {
+      "e2b": {
+        "qualified_name": "e2b.sandbox.filesystem.filesystem.FileType",
+        "signature": "(*values)",
+        "mro": [
+          "e2b.sandbox.filesystem.filesystem.FileType",
+          "enum.Enum",
+          "builtins.object"
+        ]
+      },
+      "agentcore": {
+        "qualified_name": "agentcore_sandbox.models.FileType",
+        "signature": "(*values)",
+        "mro": [
+          "agentcore_sandbox.models.FileType",
+          "builtins.str",
+          "enum.Enum",
+          "builtins.object"
+        ]
+      },
+      "same_class": false,
+      "agentcore_is_e2b_subclass": false
+    },
+    "WriteInfo": {
+      "e2b": {
+        "qualified_name": "e2b.sandbox.filesystem.filesystem.WriteInfo",
+        "signature": "(name: str, type: Optional[e2b.sandbox.filesystem.filesystem.FileType], path: str, *, metadata: Optional[Dict[str, str]] = None) -> None",
+        "mro": [
+          "e2b.sandbox.filesystem.filesystem.WriteInfo",
+          "builtins.object"
+        ],
+        "frozen": false,
+        "fields": [
+          {
+            "name": "name",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "type",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "path",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "metadata",
+            "keyword_only": true,
+            "required": false
+          }
+        ]
+      },
+      "agentcore": {
+        "qualified_name": "agentcore_sandbox.models.WriteInfo",
+        "signature": "(name: str, type: agentcore_sandbox.models.FileType, path: str, metadata: dict | None = None) -> None",
+        "mro": [
+          "agentcore_sandbox.models.WriteInfo",
+          "builtins.object"
+        ],
+        "frozen": true,
+        "fields": [
+          {
+            "name": "name",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "type",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "path",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "metadata",
+            "keyword_only": false,
+            "required": false
+          }
+        ]
+      },
+      "same_class": false,
+      "agentcore_is_e2b_subclass": false
+    },
+    "EntryInfo": {
+      "e2b": {
+        "qualified_name": "e2b.sandbox.filesystem.filesystem.EntryInfo",
+        "signature": "(name: str, type: Optional[e2b.sandbox.filesystem.filesystem.FileType], path: str, size: int, mode: int, permissions: str, owner: str, group: str, modified_time: datetime.datetime, symlink_target: Optional[str] = None, *, metadata: Optional[Dict[str, str]] = None) -> None",
+        "mro": [
+          "e2b.sandbox.filesystem.filesystem.EntryInfo",
+          "e2b.sandbox.filesystem.filesystem.WriteInfo",
+          "builtins.object"
+        ],
+        "frozen": false,
+        "fields": [
+          {
+            "name": "name",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "type",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "path",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "metadata",
+            "keyword_only": true,
+            "required": false
+          },
+          {
+            "name": "size",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "mode",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "permissions",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "owner",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "group",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "modified_time",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "symlink_target",
+            "keyword_only": false,
+            "required": false
+          }
+        ]
+      },
+      "agentcore": {
+        "qualified_name": "agentcore_sandbox.models.EntryInfo",
+        "signature": "(name: str, type: agentcore_sandbox.models.FileType, path: str, metadata: dict | None = None, size: int | None = None, mode: int | None = None, permissions: str | None = None, owner: str | None = None, group: str | None = None, modified_time: datetime.datetime | None = None, symlink_target: str | None = None) -> None",
+        "mro": [
+          "agentcore_sandbox.models.EntryInfo",
+          "agentcore_sandbox.models.WriteInfo",
+          "builtins.object"
+        ],
+        "frozen": true,
+        "fields": [
+          {
+            "name": "name",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "type",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "path",
+            "keyword_only": false,
+            "required": true
+          },
+          {
+            "name": "metadata",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "size",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "mode",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "permissions",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "owner",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "group",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "modified_time",
+            "keyword_only": false,
+            "required": false
+          },
+          {
+            "name": "symlink_target",
+            "keyword_only": false,
+            "required": false
+          }
+        ]
+      },
+      "same_class": false,
+      "agentcore_is_e2b_subclass": false
+    }
+  },
+  "file_type": {
+    "e2b": {
+      "file_equals_string": false,
+      "file_is_str": false,
+      "members": [
+        "FILE",
+        "DIR",
+        "SYMLINK"
+      ]
+    },
+    "agentcore": {
+      "file_equals_string": true,
+      "file_is_str": true,
+      "members": [
+        "FILE",
+        "DIR"
+      ]
+    },
+    "cross_backend_file_enum_equal": false
+  },
+  "constructed_command_results": {
+    "e2b": {
+      "arguments": [
+        "first",
+        "second",
+        0,
+        null
+      ],
+      "stdout": "second",
+      "stderr": "first",
+      "mutation": {
+        "assignment_succeeded": true,
+        "value_after": "changed",
+        "value_before": "second"
+      }
+    },
+    "agentcore": {
+      "arguments": [
+        "first",
+        "second",
+        0,
+        null
+      ],
+      "stdout": "first",
+      "stderr": "second",
+      "mutation": {
+        "assignment_succeeded": false,
+        "exception": "dataclasses.FrozenInstanceError",
+        "message": "cannot assign to field 'stdout'",
+        "value_after": "first"
+      }
+    }
+  },
+  "constructed_nonzero_exceptions": {
+    "e2b": {
+      "exception_type": "e2b.sandbox.commands.command_handle.CommandExitException",
+      "is_e2b_command_result": true,
+      "is_own_command_result": true,
+      "caught_by_e2b_command_exit_exception": true,
+      "stdout": "out",
+      "stderr": "err",
+      "exit_code": 7,
+      "error": null,
+      "str": "Command exited with code 7 and error:\nerr"
+    },
+    "agentcore": {
+      "exception_type": "agentcore_sandbox.exceptions.CommandExitException",
+      "is_e2b_command_result": false,
+      "is_own_command_result": false,
+      "caught_by_e2b_command_exit_exception": false,
+      "stdout": "out",
+      "stderr": "err",
+      "exit_code": 7,
+      "error": "Command exited with code 7",
+      "str": "Command exited with code 7"
+    }
+  },
+  "positional_argument_binding": {
+    "commands.run": {
+      "example_positional_arguments": [
+        "printf ok",
+        false
+      ],
+      "e2b": {
+        "signature": "(self, cmd: str, background: Optional[bool] = None, envs: Optional[Dict[str, str]] = None, user: Optional[str] = None, cwd: Optional[str] = None, on_stdout: Optional[Callable[[str], NoneType]] = None, on_stderr: Optional[Callable[[str], NoneType]] = None, stdin: Optional[bool] = None, timeout: Optional[float] = 60, request_timeout: Optional[float] = None)",
+        "accepted_by_python_signature": true
+      },
+      "agentcore": {
+        "signature": "(self, cmd, *, cwd=None, envs=None, on_stdout=None, on_stderr=None, background=False, user=None, stdin=False, timeout=60, request_timeout=None, execution_timeout=300, **kwargs)",
+        "accepted_by_python_signature": false,
+        "error": "too many positional arguments"
+      }
+    },
+    "files.read": {
+      "example_positional_arguments": [
+        "test.txt",
+        "bytes"
+      ],
+      "e2b": {
+        "signature": "(self, path: str, format: Literal['text', 'bytes', 'stream'] = 'text', user: Optional[str] = None, request_timeout: Optional[float] = None, gzip: bool = False, stream_idle_timeout: Optional[float] = None)",
+        "accepted_by_python_signature": true
+      },
+      "agentcore": {
+        "signature": "(self, path, *, format='text', **kwargs)",
+        "accepted_by_python_signature": false,
+        "error": "too many positional arguments"
+      }
+    },
+    "files.list": {
+      "example_positional_arguments": [
+        ".",
+        1
+      ],
+      "e2b": {
+        "signature": "(self, path: str, depth: Optional[int] = 1, user: Optional[str] = None, request_timeout: Optional[float] = None) -> List[e2b.sandbox.filesystem.filesystem.EntryInfo]",
+        "accepted_by_python_signature": true
+      },
+      "agentcore": {
+        "signature": "(self, path, *, depth=1, **kwargs)",
+        "accepted_by_python_signature": false,
+        "error": "too many positional arguments"
+      }
+    }
+  },
+  "lifecycle_source_only": {
+    "e2b_sandbox_exit": {
+      "path": "installed-e2b/sandbox_sync/main.py",
+      "start_line": 509,
+      "sha256": "e4c996f2e93a1d3f5e0bfaacdb319ab4855fd80f97c78a60453d970c4c5f2a93",
+      "source": "    def __exit__(self, exc_type, exc_value, traceback):\n        self.kill()\n"
+    },
+    "agentcore_sandbox_exit": {
+      "path": "src/agentcore_sandbox/sandbox.py",
+      "start_line": 76,
+      "sha256": "0ff703abc4a85e16327ef2bacbba86c7c4f66988e3812d0eb171137299945ce5",
+      "source": "    def __exit__(self, *_):\n        self.close()\n"
+    },
+    "agentcore_sandbox_close": {
+      "path": "src/agentcore_sandbox/sandbox.py",
+      "start_line": 69,
+      "sha256": "0ff703abc4a85e16327ef2bacbba86c7c4f66988e3812d0eb171137299945ce5",
+      "source": "    def close(self):\n        self._closed = True\n"
+    },
+    "interpretation": "E2B Sandbox.__exit__ invokes self.kill(); AgentCore Sandbox.__exit__ invokes self.close(), which marks only the local handle closed. The probe does not execute these methods."
+  },
+  "publication_note": "Only local filesystem source locations were replaced with repository/installed-package labels; type observations are unchanged."
+}

@@ -2,6 +2,8 @@
 
 扫描日期：2026-10-12。发布人员在上传 GitHub 前检查公开副本，扫描器检查密钥、Python 代码与已解析的依赖版本；独立代码审查者复核命令执行、文件边界、部署权限和日志行为。
 
+后续双端对照更新也经过发布扫描：Gitleaks 未发现密钥，Bandit 扫描 3101 行源码／工具代码，仍为原有的 23 项低危提示，没有新增中高危或低危提示。本轮未改运行依赖，测试程序共通过 178 项本地用例。更新记录见 [复扫摘要](comparison/security-check.json)、[Bandit JSON](comparison/bandit.json) 和 [Gitleaks JSON](comparison/gitleaks.json)；下表保留首次发布时的扫描规模与结果。
+
 ## 扫描器结果与发布人员处理
 
 | 执行主体 | 检查范围 | 结果 |

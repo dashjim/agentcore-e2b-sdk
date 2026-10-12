@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "execution_subject": "scripts/compare_timeout.py application runner",
+  "systems_under_test": {
+    "e2b": "real E2B cloud through upstream e2b SDK",
+    "agentcore": "real AgentCore Runtime through agentcore-e2b-sdk and adapter"
+  },
+  "started_at": "2026-10-12T07:08:48.369643+00:00",
+  "versions": {
+    "python": "3.12.3",
+    "e2b": "2.51.0",
+    "agentcore-e2b-sdk": "0.1.0"
+  },
+  "shared_probe": {
+    "command": "printf started > started; printf started; sleep 2; printf completed > completed; printf completed",
+    "control_timeout_seconds": 15,
+    "short_timeout_seconds": 0.5,
+    "wait_windows_after_return_seconds": [
+      3.2,
+      6.2
+    ],
+    "description": "The application runs the identical command first in a control directory and then in a fresh short-timeout directory. The application uses identical stdout callbacks and marker reads on both backends."
+  },
+  "interpretation_limit": "Even when started exists and completed is absent, the application has observed only two finite windows. These results cannot establish permanent cancellation, process termination, or an E2B cancellation guarantee. Missing started also cannot establish that the command began execution.",
+  "cleanup_semantics": "The application kills E2B and verifies is_running=False. The application requests AgentCore Runtime stop; stop_request_accepted confirms request acceptance only, not observed termination or E2B kill equivalence.",
+  "completion_semantics": "completed means positive controls, expected timeout exception classes, both observation windows, and cleanup completed. It does not mean the backends have equal behavior.",
+  "backends": {
+    "e2b": {
+      "setup": {
+        "status": "ready"
+      },
+      "probe": {
+        "control": {
+          "stdout": "startedcompleted",
+          "elapsed_seconds": 2.296627,
+          "markers": {
+            "started": {
+              "present": true,
+              "content": "started"
+            },
+            "completed": {
+              "present": true,
+              "content": "completed"
+            }
+          },
+          "passed": true
+        },
+        "short_timeout": {
+          "outcome": "raised",
+          "exception": {
+            "python_type": {
+              "module": "e2b.exceptions",
+              "name": "TimeoutException"
+            },
+            "fields": {}
+          },
+          "elapsed_seconds": 0.501448,
+          "callbacks_at_return": [
+            {
+              "elapsed_seconds": 0.071771,
+              "text": "started"
+            }
+          ]
+        },
+        "windows": [
+          {
+            "requested_wait_after_command_seconds": 3.2,
+            "actual_elapsed_after_command_seconds": 3.200085,
+            "markers": {
+              "started": {
+                "present": true,
+                "content": "started"
+              },
+              "completed": {
+                "present": false,
+                "content": null
+              }
+            },
+            "status": "observed",
+            "callbacks": [
+              {
+                "elapsed_seconds": 0.071771,
+                "text": "started"
+              }
+            ]
+          },
+          {
+            "requested_wait_after_command_seconds": 6.2,
+            "actual_elapsed_after_command_seconds": 6.500304,
+            "markers": {
+              "started": {
+                "present": true,
+                "content": "started"
+              },
+              "completed": {
+                "present": false,
+                "content": null
+              }
+            },
+            "status": "observed",
+            "callbacks": [
+              {
+                "elapsed_seconds": 0.071771,
+                "text": "started"
+              }
+            ]
+          }
+        ],
+        "status": "observed"
+      },
+      "cleanup": {
+        "action": "E2B Sandbox.kill followed by is_running",
+        "status": "passed",
+        "kill_return": {
+          "python_type": {
+            "module": "builtins",
+            "name": "bool"
+          },
+          "value": true
+        },
+        "is_running": false
+      },
+      "expected_timeout_exception": "TimeoutException",
+      "expected_timeout_observed": true,
+      "complete": true,
+      "duration_seconds": 10.83208
+    },
+    "agentcore": {
+      "setup": {
+        "status": "ready"
+      },
+      "probe": {
+        "control": {
+          "stdout": "startedcompleted",
+          "elapsed_seconds": 2.753577,
+          "markers": {
+            "started": {
+              "present": true,
+              "content": "started"
+            },
+            "completed": {
+              "present": true,
+              "content": "completed"
+            }
+          },
+          "passed": true
+        },
+        "short_timeout": {
+          "outcome": "raised",
+          "exception": {
+            "python_type": {
+              "module": "agentcore_sandbox.exceptions",
+              "name": "CommandWaitTimeout"
+            },
+            "fields": {
+              "code": {
+                "python_type": {
+                  "module": "builtins",
+                  "name": "str"
+                },
+                "value": "CommandWaitTimeout"
+              },
+              "exit_code": {
+                "python_type": {
+                  "module": "builtins",
+                  "name": "NoneType"
+                },
+                "value": null
+              },
+              "stdout": {
+                "python_type": {
+                  "module": "builtins",
+                  "name": "str"
+                },
+                "value": ""
+              },
+              "stderr": {
+                "python_type": {
+                  "module": "builtins",
+                  "name": "str"
+                },
+                "value": ""
+              },
+              "error": {
+                "python_type": {
+                  "module": "builtins",
+                  "name": "str"
+                },
+                "omitted": "untrusted_exception_field",
+                "length": 50,
+                "redacted_sha256": "6e1603e278ef969a4fd25d7881e20ab1a8791ddc77546ce07b891b047c6f23f7"
+              },
+              "remote_state_unknown": {
+                "python_type": {
+                  "module": "builtins",
+                  "name": "bool"
+                },
+                "value": true
+              }
+            }
+          },
+          "elapsed_seconds": 0.500598,
+          "callbacks_at_return": []
+        },
+        "windows": [
+          {
+            "requested_wait_after_command_seconds": 3.2,
+            "actual_elapsed_after_command_seconds": 3.200077,
+            "markers": {
+              "started": {
+                "present": true,
+                "content": "started"
+              },
+              "completed": {
+                "present": true,
+                "content": "completed"
+              }
+            },
+            "status": "observed",
+            "callbacks": []
+          },
+          {
+            "requested_wait_after_command_seconds": 6.2,
+            "actual_elapsed_after_command_seconds": 6.813743,
+            "markers": {
+              "started": {
+                "present": true,
+                "content": "started"
+              },
+              "completed": {
+                "present": true,
+                "content": "completed"
+              }
+            },
+            "status": "observed",
+            "callbacks": []
+          }
+        ],
+        "status": "observed"
+      },
+      "cleanup": {
+        "status": "stop_request_accepted",
+        "action": "AgentCore Runtime stop request (not E2B kill); local handles close"
+      },
+      "expected_timeout_exception": "CommandWaitTimeout",
+      "expected_timeout_observed": true,
+      "complete": true,
+      "duration_seconds": 13.183758
+    }
+  },
+  "status": "completed",
+  "finished_at": "2026-10-12T07:09:12.386379+00:00"
+}

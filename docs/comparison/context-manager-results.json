@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "execution_subject": "scripts/compare_context_manager.py application runner",
+  "systems_under_test": {
+    "e2b": "real E2B cloud through upstream e2b SDK",
+    "agentcore": "real AgentCore Runtime through agentcore-e2b-sdk and adapter"
+  },
+  "started_at": "2026-10-12T07:03:30.855074+00:00",
+  "versions": {
+    "python": "3.12.3",
+    "e2b": "2.51.0",
+    "agentcore-e2b-sdk": "0.1.0"
+  },
+  "shared_business_code": "with sandbox:\n    result = sandbox.commands.run('printf context-ok', timeout=15)\n",
+  "scope": "The application executes identical with-block business code. The application uses backend-specific observers and cleanup calls outside that block.",
+  "cleanup_semantics": {
+    "e2b": "The application calls kill again in finally, then checks is_running=False. A repeated kill return or exception is recorded separately; no_handle does not confirm termination.",
+    "agentcore": "The application uses an open handle to request Runtime stop and closes local handles. stop_request_accepted confirms request acceptance only, not observed termination or E2B kill semantics."
+  },
+  "completion_semantics": "completed/exit 0 means both observations and cleanup completed. It does not mean zero differences or full SDK compatibility. expected_behavior records each backend's separate lifecycle expectation.",
+  "backends": {
+    "e2b": {
+      "setup": {
+        "status": "ready"
+      },
+      "business_block": {
+        "status": "observed",
+        "stdout": "context-ok",
+        "expected_stdout": true
+      },
+      "observer": {
+        "status": "observed",
+        "execution_subject": "application using the original E2B handle",
+        "call": "old_handle.is_running(request_timeout=20)",
+        "is_running": false
+      },
+      "cleanup": {
+        "action": "E2B Sandbox.kill followed by is_running",
+        "status": "passed",
+        "kill_return": {
+          "python_type": {
+            "module": "builtins",
+            "name": "bool"
+          },
+          "value": false
+        },
+        "is_running": false
+      },
+      "expected_behavior": {
+        "description": "E2B SDK exits the with-block by killing the cloud sandbox; the original handle reports is_running=False.",
+        "satisfied": true
+      },
+      "complete": true,
+      "duration_seconds": 0.951924
+    },
+    "agentcore": {
+      "setup": {
+        "status": "ready"
+      },
+      "business_block": {
+        "status": "observed",
+        "stdout": "context-ok",
+        "expected_stdout": true
+      },
+      "observer": {
+        "status": "observed",
+        "execution_subject": "application using the AgentCore client and reconnected handle",
+        "calls": [
+          "old_handle.state",
+          "client.sandboxes.connect(ref)",
+          "resumed.commands.run('printf resumed', timeout=15)"
+        ],
+        "old_handle_state": "CLOSED",
+        "same_session_reference": true,
+        "resumed_stdout": "resumed",
+        "expected_resumed_stdout": true
+      },
+      "cleanup": {
+        "status": "stop_request_accepted",
+        "action": "AgentCore Runtime stop request (not E2B kill); local handles close"
+      },
+      "expected_behavior": {
+        "description": "AgentCore SDK exits the with-block by closing the local handle; the application reconnects the same Runtime session and executes a command.",
+        "satisfied": true
+      },
+      "complete": true,
+      "duration_seconds": 2.703256
+    }
+  },
+  "status": "completed",
+  "summary": {
+    "expected_behavior_satisfied": {
+      "e2b": true,
+      "agentcore": true
+    },
+    "business_stdout_equal": true,
+    "expected_lifecycle_difference": "E2B __exit__ kills the remote sandbox; AgentCore __exit__ closes only the local handle.",
+    "lifecycle_difference_observed": true
+  },
+  "finished_at": "2026-10-12T07:03:34.511155+00:00"
+}

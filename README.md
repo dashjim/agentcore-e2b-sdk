@@ -4,6 +4,8 @@
 
 这是一版功能子集。客户需要修改 import、AWS 配置和生命周期调用；SDK 不承诺原版 E2B 的完整协议、类型身份、永久 kill、TTL、内存快照、后台进程、PTY 或有状态 run_code。
 
+维护者已完成真实 E2B／AgentCore 双端对照：两轮各 28 项共同用例，另有生命周期及超时专项。基础调用的业务代码可以复用，但文件语义、异常、生命周期和超时后的副作用存在差异。详细结果、原始证据与复跑命令见 [双端对照测试报告](docs/backend-comparison-2026-10-12.md)；维护者未为对照修改 SDK 核心实现。
+
 ## 安装与本地测试
 
 项目要求 Python 3.11+。在本目录执行：
@@ -94,7 +96,7 @@ python3 scripts/test_container.py --image agentcore-e2b-sdk:0.1.0 --root-helper
 
 ## E2B 对照测试
 
-官方 E2B 云服务可以用于测试，需要用户账户和 API key。首轮验收环境没有配置凭证，因此真实 E2B 测试记录为 `skipped`。用户在自己的安全配置中设置 `E2B_API_KEY`，然后执行：
+官方 E2B 云服务可以用于测试，需要用户账户和 API key。首轮验收缺少凭证时记录为 `skipped`；后续真实双端对照已经完成，结果见上述报告。用户在自己的安全配置中设置 `E2B_API_KEY`，然后执行：
 
 ```bash
 python3 -m pip install 'e2b==2.51.0'
@@ -109,5 +111,6 @@ python3 scripts/check_e2b.py --live --require-config
 - [实际测试报告](docs/test-report.md)：测试程序的实际结果、环境限制和资源状态。
 - [架构与职责](docs/architecture.md)：客户端、Runtime 服务与确定性适配程序的职责和兼容边界。
 - [公开发布安全扫描](docs/security-scan.md)：扫描范围、工具结果及已知限制。
+- [真实双端对照](docs/backend-comparison-2026-10-12.md)：共同调用的实测结果、差异清单和专项证据。
 
 SDK 不承担恶意命令的同容器隔离；Runtime 的计算隔离、IAM 权限与客户应用的会话授权各有独立责任。

@@ -1,0 +1,18 @@
+{
+  "execution_subject": "Publication reviewer and security tools",
+  "scope": "SDK source, comparison scripts and published evidence",
+  "gitleaks": {
+    "version": "8.30.1",
+    "findings": 0
+  },
+  "bandit": {
+    "version": "1.9.4",
+    "high": 0,
+    "medium": 0,
+    "low": 23,
+    "lines": 3101,
+    "review": "Same previously reviewed low findings; comparison scripts add no new findings."
+  },
+  "dependency_change": false,
+  "credential_and_internal_metadata_check": "No E2B key, real AWS account/resource IDs, session IDs or internal hostnames included."
+}
