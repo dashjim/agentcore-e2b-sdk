@@ -1,0 +1,16 @@
+{
+  "execution_subject": "pytest on the public checkout",
+  "system_under_test": "SDK, Runtime adapter and test scripts",
+  "python": "3.12.3",
+  "pytest": "9.1.1",
+  "boto3": "1.43.111",
+  "botocore": "1.43.111",
+  "tests": 145,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 2.317,
+  "timestamp": "2026-10-12T06:10:26.677018+00:00",
+  "status": "passed",
+  "note": "Sanitized summary; hostnames and raw deployment/session metadata are intentionally excluded."
+}

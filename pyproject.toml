@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentcore-e2b-sdk"
+version = "0.1.0"
+description = "E2B-style Python client for Amazon Bedrock AgentCore Runtime"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["boto3>=1.43.6,<2"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+e2b-test = ["e2b==2.51.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+markers = ["live: explicitly enabled cloud integration tests"]
